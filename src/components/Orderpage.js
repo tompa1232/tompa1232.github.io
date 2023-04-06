@@ -137,7 +137,7 @@ const Orderpage = () => {
                 <div>
                 </div>
             </div>
-            <p className='pt-5 pb-5 '>Ange namn, telefon, epost och leveransadress för att beställa!</p>
+            <p className='pt-5 pb-5'>Ange namn, telefon, epost och leveransadress för att beställa!</p>
             <Form method='get' onSubmit={submit} action={`/Thankyoupage`} className='order-form'>
                 <input type="hidden" name="id" value={data.id} />
                 <TextField onChange={(e) => validateName(e)} name="firstname" label="Ditt Namn: " required error={firstNameError} helperText={firstNameError ? "incorrect entry." : ""} />
@@ -149,7 +149,7 @@ const Orderpage = () => {
                 <button type="submit">Submit</button>
             </Form>
         </div>
-        /</div>
+        </div>
     )
 }
 
