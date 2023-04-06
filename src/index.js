@@ -2,17 +2,31 @@ import React from 'react';
 import {createRoot} from 'react-dom/client';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {createBrowserRouter, createRoutesFromElements, RouterProvider, Route} from 'react-router-dom';
+import Home from './components/Home';
+import Orderpage from './components/Orderpage';
+import Thankyoupage from './components/Thankyoupage';
 
 
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+        <Route index element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/orderpage" element={<Orderpage />} />
+        <Route path="/thankyoupage" element={<Thankyoupage />} />
+        </>
+      
+  )
+);
 
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 
 );

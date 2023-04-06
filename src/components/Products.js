@@ -16,7 +16,6 @@ const Products = () => {
             url: "https://fakestoreapi.com/products",
         })
             .then((res) => {
-                console.log(res.data);
                 setData(res.data);
             })
             .catch((e) => console.log(e))
@@ -25,6 +24,7 @@ const Products = () => {
     }, []);
 
     return (
+        <div className='app'>
         <div className='products-container'>
             {loading && (
                 <div>
@@ -49,6 +49,7 @@ const Products = () => {
                     </div>
                 </div>
             ))}
+        </div>
         </div>
     );
 };

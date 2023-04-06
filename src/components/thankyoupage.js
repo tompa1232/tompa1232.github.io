@@ -1,11 +1,13 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 const Thankyoupage = () => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
-    const quaryParams = new URLSearchParams(window.location.search);
+    const { search } = useLocation();
+    const quaryParams = new URLSearchParams(search);
     const id = quaryParams.get("id");
 
     useEffect(() => {
@@ -23,6 +25,7 @@ const Thankyoupage = () => {
 
     }, []);
   return (
+    <div className="app">
     <div key={data.id} className="card">
         <h1 className='pb-10 text-lg'>
             Thank you for your order!
@@ -36,6 +39,7 @@ const Thankyoupage = () => {
                 </div>
             </div>
         </div>
+    </div>
   )
 }
 

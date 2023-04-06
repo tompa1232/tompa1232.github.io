@@ -4,6 +4,7 @@ import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { FormControl, FormLabel } from '@mui/material';
+import { useLocation, Form} from 'react-router-dom';
 
 
 
@@ -16,8 +17,10 @@ const Orderpage = () => {
     const [adressError, setAdressError] = useState(false);
     const [postNumberError, setPostNumberError] = useState(false);
     const [cityError, setCityError] = useState(false);
-    const quaryParams = new URLSearchParams(window.location.search);
+    const { search } = useLocation();
+    const quaryParams = new URLSearchParams(search);
     const id = quaryParams.get("id");
+    
 
     useEffect(() => {
         setLoading(true);
@@ -124,6 +127,7 @@ const Orderpage = () => {
 
 
     return (
+        <div className='app'>
         <div key={data.id} className="card">
             <div><img src={data.image} alt="#" /></div>
             <div className='card-description'>
@@ -134,7 +138,7 @@ const Orderpage = () => {
                 </div>
             </div>
             <p className='pt-5 pb-5 '>Ange namn, telefon, epost och leveransadress för att beställa!</p>
-            <form method='GET' onSubmit={submit} action={`/thankyoupage`} className='order-form'>
+            <Form method='get' onSubmit={submit} action={`/Thankyoupage`} className='order-form'>
                 <input type="hidden" name="id" value={data.id} />
                 <TextField onChange={(e) => validateName(e)} name="firstname" label="Ditt Namn: " required error={firstNameError} helperText={firstNameError ? "incorrect entry." : ""} />
                 <TextField onChange={(e) => validatePhoneNumber(e)} name="phonenumber" label="telefonnummer: " required error={phoneNumberError} helperText={phoneNumberError ? "incorrect entry." : ""} />
@@ -142,9 +146,10 @@ const Orderpage = () => {
                 <TextField onChange={(e) => validateAdress(e)} name="adress" label="gatuadress: " required error={adressError} helperText={adressError ? "incorrect entry." : ""} />
                 <TextField onChange={(e) => validatePostNumber(e)} name="postnummber" label="postnummer: " required error={postNumberError} helperText={postNumberError ? "incorrect entry." : ""} />
                 <TextField onChange={(e) => validateCity(e)} name="ort" label="ort: " required error={cityError} helperText={cityError ? "incorrect entry." : ""} />
-                <Button type="submit">Submit</Button>
-            </form>
+                <button type="submit">Submit</button>
+            </Form>
         </div>
+        /</div>
     )
 }
 
